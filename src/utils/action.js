@@ -59,7 +59,7 @@ export async function callHuggingFaceAPI(modelSelected, data) {
             `https://api-inference.huggingface.co/models/black-forest-labs/${modelSelected}`,
             {
                 headers: {
-                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY}`,
+                    Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
                     "Content-Type": "application/json",
                 },
                 method: "POST",

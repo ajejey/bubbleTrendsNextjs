@@ -28,27 +28,6 @@ const HuggingFaceQuery = () => {
   const [history, setHistory] = useState([]);
   const [imageBlob, setImageBlob] = useState(null);
 
-
-   // const response = await fetch(
-      //   `https://api-inference.huggingface.co/models/black-forest-labs/${modelSelected}`,
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY}`,
-      //       "Content-Type": "application/json",
-      //     },
-      //     method: "POST",
-      //     body: JSON.stringify(data),
-      //     cache: "no-cache",
-      //   }
-      // );
-
-      // if (!response.ok) {
-      //   throw new Error("Failed to fetch image.");
-      // }
-
-      // const blob = await response.blob();
-
-
   useEffect(() => {
     loadHistory();
   }, []);
