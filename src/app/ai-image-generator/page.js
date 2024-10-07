@@ -6,11 +6,7 @@ import { RotateCw, Trash2 } from "lucide-react";
 import { callHuggingFaceAPI } from "@/utils/action";
 import CustomLoader from "./customLoader";
 
-const dbPromise = openDB('AIImageGeneratorDB', 1, {
-  upgrade(db) {
-    db.createObjectStore('prompts', { keyPath: 'id', autoIncrement: true });
-  },
-});
+
 
 const HuggingFaceQuery = () => {
   const [loading, setLoading] = useState(false);
@@ -27,6 +23,12 @@ const HuggingFaceQuery = () => {
   const [downloadUrl, setDownloadUrl] = useState(null);
   const [history, setHistory] = useState([]);
   const [imageBlob, setImageBlob] = useState(null);
+
+  const dbPromise = openDB('AIImageGeneratorDB', 1, {
+    upgrade(db) {
+      db.createObjectStore('prompts', { keyPath: 'id', autoIncrement: true });
+    },
+  });
 
   useEffect(() => {
     loadHistory();

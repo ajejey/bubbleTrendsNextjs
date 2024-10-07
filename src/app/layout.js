@@ -1,6 +1,7 @@
 import { Poppins } from 'next/font/google';
 import "./globals.css";
 import { GoogleTagManager } from '@next/third-parties/google'
+import { Suspense } from 'react';
 
 
 const poppins = Poppins({ 
@@ -44,7 +45,9 @@ export default function RootLayout({ children }) {
       <body
         className={` ${poppins.className} antialiased`}
       >
+      <Suspense fallback={<div>Loading...</div>}>
         {children}
+      </Suspense>
       </body>
     </html>
   );
