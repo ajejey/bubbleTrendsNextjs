@@ -1,12 +1,9 @@
 'use client';
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { openDB } from 'idb';
 import { RotateCw, Trash2 } from "lucide-react";
 import { callHuggingFaceAPI } from "@/utils/action";
 import CustomLoader from "./customLoader";
-
-
 
 const HuggingFaceQuery = () => {
   const [loading, setLoading] = useState(false);
@@ -23,32 +20,47 @@ const HuggingFaceQuery = () => {
   const [downloadUrl, setDownloadUrl] = useState(null);
   const [history, setHistory] = useState([]);
   const [imageBlob, setImageBlob] = useState(null);
-
-  const dbPromise = openDB('AIImageGeneratorDB', 1, {
-    upgrade(db) {
-      db.createObjectStore('prompts', { keyPath: 'id', autoIncrement: true });
-    },
-  });
+  const [db, setDb] = useState(null);
 
   useEffect(() => {
-    loadHistory();
+    let isMounted = true;
+    const initDB = async () => {
+      if (typeof window !== 'undefined') {
+        const { openDB } = await import('idb');
+        const database = await openDB('AIImageGeneratorDB', 1, {
+          upgrade(db) {
+            db.createObjectStore('prompts', { keyPath: 'id', autoIncrement: true });
+          },
+        });
+        if (isMounted) {
+          setDb(database);
+          loadHistory(database);
+        }
+      }
+    };
+
+    initDB();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  const loadHistory = async () => {
-    const db = await dbPromise;
-    const tx = db.transaction('prompts', 'readonly');
+  const loadHistory = async (database) => {
+    if (!database) return;
+    const tx = database.transaction('prompts', 'readonly');
     const store = tx.objectStore('prompts');
     const items = await store.getAll();
     setHistory(items.reverse());
   };
 
   const saveToHistory = async (data) => {
-    const db = await dbPromise;
+    if (!db) return;
     const tx = db.transaction('prompts', 'readwrite');
     const store = tx.objectStore('prompts');
     await store.add(data);
     await tx.done;
-    loadHistory();
+    loadHistory(db);
   };
 
   const fetchImage = async (data) => {
@@ -69,18 +81,18 @@ const HuggingFaceQuery = () => {
       }
 
       // Save to history
-    await saveToHistory({
-      prompt,
-      negativePrompt,
-      modelSelected,
-      guidanceScale,
-      numInferenceSteps,
-      width,
-      height,
-      seed,
-      timestamp: new Date().toLocaleString(),
-      imageBlob: imageUrl
-    });
+      await saveToHistory({
+        prompt,
+        negativePrompt,
+        modelSelected,
+        guidanceScale,
+        numInferenceSteps,
+        width,
+        height,
+        seed,
+        timestamp: new Date().toLocaleString(),
+        imageBlob: imageUrl
+      });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -103,7 +115,6 @@ const HuggingFaceQuery = () => {
   };
 
   const loadHistoryItem = (item) => {
-    console.log("loadHistoryItem ", item);
     setPrompt(item.prompt);
     setNegativePrompt(item.negativePrompt);
     setModelSelected(item.modelSelected);
@@ -112,25 +123,18 @@ const HuggingFaceQuery = () => {
     setWidth(item.width);
     setHeight(item.height);
     setSeed(item.seed);
-    // const imageUrl = URL.createObjectURL(item.imageBlob);
     setImage(item.imageBlob);
-
-    // // Create download URL
-    // const downloadBlob = new Blob([item.imageBlob], { type: 'image/png' });
-    // const downloadUrl = URL.createObjectURL(downloadBlob);
     setDownloadUrl(item.imageBlob);
-
   };
 
   const deleteHistoryItem = async (item) => {
-    const db = await dbPromise;
+    if (!db) return;
     const tx = db.transaction('prompts', 'readwrite');
     const store = tx.objectStore('prompts');
     await store.delete(item.id);
     await tx.done;
-    loadHistory();
+    loadHistory(db);
   };
-
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -290,7 +294,7 @@ const HuggingFaceQuery = () => {
               </tr>
             </thead>
             <tbody>
-              {history.map((item, index) => (
+              {history.length && history.map((item, index) => (
                 <tr key={index} className="border-t">
                   <td className="px-4 py-2">
                     <button
