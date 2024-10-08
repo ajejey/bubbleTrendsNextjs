@@ -2,6 +2,10 @@
 import MoreTrend from "@/models/moreTrend";
 import { revalidatePath } from "next/cache";
 import { connectToMongoDB } from "@/utils/db";
+import { v4 as uuidv4 } from 'uuid';
+
+const jobs = new Map();
+
 
 export async function saveData(data) {
     'use server';
@@ -51,7 +55,19 @@ export async function getMoreTrendsData(selectedDate) {
 }
 
 
-export async function callHuggingFaceAPI(modelSelected, data) {
+export async function initiateHuggingFaceAPI(modelSelected, data) {
+    'use server';
+    const jobId = uuidv4();
+    jobs.set(jobId, { status: 'pending' });
+
+    // Start the API call process without waiting for it to complete
+    callHuggingFaceAPI(modelSelected, data, jobId);
+
+    return { jobId };
+}
+
+
+export async function callHuggingFaceAPI(modelSelected, data, jobId) {
     'use server';
     console.log("Calling HuggingFace API.........");
     try {
@@ -76,12 +92,23 @@ export async function callHuggingFaceAPI(modelSelected, data) {
         const base64 = Buffer.from(arrayBuffer).toString('base64');
 
         // Revalidate the path to ensure fresh data
-        revalidatePath('/');
+        // revalidatePath('/');
 
-        return { success: true, image: base64 };
+        // return { success: true, image: base64 };
+        jobs.set(jobId, { status: 'completed', image: base64 });
     } catch (error) {
         console.log(error);
-        return { message: error };
+        jobs.set(jobId, { status: 'error', message: error.message });
     }
+}
+
+
+export async function checkJobStatus(jobId) {
+    'use server';
+    const job = jobs.get(jobId);
+    if (!job) {
+        return { status: 'not_found' };
+    }
+    return job;
 }
 

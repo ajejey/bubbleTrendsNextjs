@@ -2,10 +2,11 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { RotateCw, Trash2 } from "lucide-react";
-import { callHuggingFaceAPI } from "@/utils/action";
+import { callHuggingFaceAPI, checkJobStatus, initiateHuggingFaceAPI } from "@/utils/action";
 import CustomLoader from "./customLoader";
 
 const HuggingFaceQuery = () => {
+  const [jobId, setJobId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
@@ -100,7 +101,23 @@ const HuggingFaceQuery = () => {
     }
   };
 
-  const handleSubmit = () => {
+  // const handleSubmit = () => {
+  //   const data = {
+  //     inputs: prompt,
+  //     parameters: {
+  //       guidance_scale: guidanceScale,
+  //       negative_prompt: negativePrompt ? [negativePrompt] : undefined,
+  //       num_inference_steps: numInferenceSteps,
+  //       // target_size: { width, height },
+  //       seed: seed ? parseInt(seed) : undefined,
+  //     },
+  //   };
+  //   fetchImage(data);
+  // };
+  const handleSubmit = async () => {
+    setLoading(true);
+    setError(null);
+    setImage(null);
     const data = {
       inputs: prompt,
       parameters: {
@@ -111,7 +128,13 @@ const HuggingFaceQuery = () => {
         seed: seed ? parseInt(seed) : undefined,
       },
     };
-    fetchImage(data);
+    try {
+      const result = await initiateHuggingFaceAPI(modelSelected, data);
+      setJobId(result.jobId);
+  } catch (err) {
+      setError('Failed to initiate image generation');
+      setLoading(false);
+  }
   };
 
   const loadHistoryItem = (item) => {
@@ -135,6 +158,44 @@ const HuggingFaceQuery = () => {
     await tx.done;
     loadHistory(db);
   };
+
+  useEffect(() => {
+    if (!jobId) return;
+
+    const pollJobStatus = async () => {
+        const result = await checkJobStatus(jobId);
+        if (result.status === 'completed') {
+            setImage(`data:image/png;base64,${result.image}`);
+            setLoading(false);
+            setJobId(null);
+            // Save to history
+            await saveToHistory({
+              prompt,
+              negativePrompt,
+              modelSelected,
+              guidanceScale,
+              numInferenceSteps,
+              width,
+              height,
+              seed,
+              timestamp: new Date().toLocaleString(),
+              imageBlob: `data:image/png;base64,${result.image}`
+            });
+        } else if (result.status === 'error') {
+            setError(result.message);
+            setLoading(false);
+            setJobId(null);
+        } else if (result.status === 'not_found') {
+            setError('Job not found');
+            setLoading(false);
+            setJobId(null);
+        }
+    };
+
+    const intervalId = setInterval(pollJobStatus, 4000); // Poll every second
+
+    return () => clearInterval(intervalId);
+}, [jobId]);
 
   return (
     <div className="container mx-auto px-4 py-8">
