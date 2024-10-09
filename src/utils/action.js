@@ -6,27 +6,25 @@ import { v4 as uuidv4 } from 'uuid';
 
 const jobs = new Map();
 
-
-export async function saveData(data) {
+export async function saveData(dataArray) {
     'use server';
     await connectToMongoDB();
-    const { trend, language, results } = data;
-    console.log("Saving data.........", data);
+    console.log("Saving data in bulk...", dataArray);
 
     try {
-        const newData = new MoreTrend({
+        const documents = dataArray.map(data => ({
             updated: new Date(),
-            trend,
-            language,
-            results
-        });
-        await newData.save();
-        //    revalidatePath('/trends');
+            trend: data.trend,
+            language: data.language,
+            results: data.results
+        }));
 
-
+        await MoreTrend.insertMany(documents);
+        console.log(`Successfully saved ${documents.length} documents`);
+        // revalidatePath('/trends');
     } catch (error) {
-        console.log(error);
-        return { message: error };
+        console.error("Error saving data in bulk:", error);
+        return { message: error.message };
     }
 }
 

@@ -65,17 +65,64 @@ const BubbleTrendsTable = () => {
     }
   };
 
+  // const callAPI = async () => {
+  //   setIsLoading(true);
+  //   setError(null);
+
+  //   const fetchAlphabetData = async (alphabet) => {
+  //     try {
+  //       const url = `${baseUrl}${alphabet}&locale=en`;
+  //       const response = await fetch(url);
+  //       const data = await response.json();
+  //       // console.log(`data from fetch baseUrl ${url}/${alphabet} `, data);
+
+  //       const alphabetData = await Promise.all(
+  //         data?.data?.trending_searches.map(async (item) => {
+  //           const resultCount = await fetchResultCount(item.keywords);
+  //           return {
+  //             keyword: item.keywords,
+  //             resultCount: resultCount || 'N/A',
+  //           };
+  //         })
+  //       );
+
+  //       setKeywords(prevKeywords => [...prevKeywords, ...alphabetData].sort((a, b) => a.resultCount - b.resultCount));
+
+  //       // Save data to the server
+  //       await Promise.all(
+  //         alphabetData.map(async (item) => {
+  //           const dataToSave = {
+  //             trend: item.keyword,
+  //             language: 'en',
+  //             results: item.resultCount === 'N/A' ? 0 : item.resultCount,
+  //           };
+
+  //         await saveData(dataToSave);
+  //         })
+  //       );
+  //     } catch (error) {
+  //       console.error(`Error fetching data for '${alphabet}':`, error);
+  //     }
+  //   };
+
+  //   // Fetch data for each alphabet concurrently
+  //   await Promise.all(alphabets.map(fetchAlphabetData));
+
+  //   setIsLoading(false);
+  // };
+
+
   const callAPI = async () => {
     setIsLoading(true);
     setError(null);
-
+    let allAlphabetData = [];
+  
     const fetchAlphabetData = async (alphabet) => {
       try {
         const url = `${baseUrl}${alphabet}&locale=en`;
         const response = await fetch(url);
         const data = await response.json();
-        // console.log(`data from fetch baseUrl ${url}/${alphabet} `, data);
-
+  
         const alphabetData = await Promise.all(
           data?.data?.trending_searches.map(async (item) => {
             const resultCount = await fetchResultCount(item.keywords);
@@ -85,39 +132,33 @@ const BubbleTrendsTable = () => {
             };
           })
         );
-
-        setKeywords(prevKeywords => [...prevKeywords, ...alphabetData].sort((a, b) => a.resultCount - b.resultCount));
-
-        // Save data to the server
-        await Promise.all(
-          alphabetData.map(async (item) => {
-            const dataToSave = {
-              trend: item.keyword,
-              language: 'en',
-              results: item.resultCount === 'N/A' ? 0 : item.resultCount,
-            };
-
-            // await fetch('/saveData', {
-            //   method: 'POST',
-            //   headers: {
-            //     'Content-Type': 'application/json',
-            //   },
-            //   body: JSON.stringify(dataToSave),
-            // });
-
-          await saveData(dataToSave);
-          })
-        );
+  
+        allAlphabetData = [...allAlphabetData, ...alphabetData];
       } catch (error) {
         console.error(`Error fetching data for '${alphabet}':`, error);
       }
     };
-
+  
     // Fetch data for each alphabet concurrently
     await Promise.all(alphabets.map(fetchAlphabetData));
-
+  
+    // Sort and set keywords
+    const sortedKeywords = allAlphabetData.sort((a, b) => a.resultCount - b.resultCount);
+    
+    // Prepare data for saving
+    const dataToSave = allAlphabetData.map(item => ({
+      trend: item.keyword,
+      language: 'en',
+      results: item.resultCount === 'N/A' ? 0 : item.resultCount,
+    }));
+    
+    // Save all data at once
+    await saveData(dataToSave);
+    
+    setKeywords(sortedKeywords);
     setIsLoading(false);
   };
+
 
   const fetchResultCount = async (keyword) => {
     try {
@@ -191,7 +232,13 @@ const BubbleTrendsTable = () => {
       </tbody>
     </table>
     {isLoading && (
-      <div className="text-center py-4">Loading more results...</div>
+      <div className="text-center py-4 flex items-center justify-center">
+        <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" fill="currentColor" />
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.924 3 7.734v1.265c0 .553.248 1.035.659 1.392l2.569 1.565c.327.262.74.377 1.133.378v1.919c0 .553.691 1.043 1.358 1.052h1.267c-.042-.504.173-.978.521-1.352l1.387-1.709Z" />
+        </svg>
+        Loading more results...
+      </div>
     )}
   </div>
   

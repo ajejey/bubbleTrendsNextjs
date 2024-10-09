@@ -11,12 +11,18 @@ export default function Home() {
         {/* Add header content here if needed */}
       </header>
 
+      {/*  */}
+
       <main className="text-center my-10">
         <h1 className="text-7xl mb-10">Bubble Trends</h1>
         <p className="text-lg leading-relaxed max-w-2xl mx-auto">
-          FREE Tool that gives you the latest Redbubble popular trends, updated
+        FREE Tool that gives you the latest Redbubble popular trends, updated
           <strong> EVERYDAY!</strong> Get the most popular and trending keywords on Redbubble that
           will help you get more sales!
+        </p>
+        <p className="text-lg leading-relaxed max-w-2xl mx-auto mt-6">
+          Now, <strong>generate images with AI</strong>! Use our AI Image Generator to create
+          amazing designs in seconds. <strong>Try it out now!</strong>
         </p>
 
         {/* Start For Free Button */}

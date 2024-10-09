@@ -1,7 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { Star, Heart, ExternalLink } from 'lucide-react';
+import { Star, Heart, ExternalLink, Image } from 'lucide-react';
 import AdSection from './AdSection';
+import DonationModal from './DonationModal';
+import Link from 'next/link';
 
 const TrendsHeroSection = () => {
   const [showDonateModal, setShowDonateModal] = useState(false);
@@ -13,26 +15,33 @@ const TrendsHeroSection = () => {
           <div>
             <h1 className="text-4xl font-bold mb-4 text-[#E21F26]">Today&apos;s Trending Keywords</h1>
             <p className="text-lg mb-6">
-              The BubbleTrends tool lists the keywords currently trending on Redbubble. 
+              The BubbleTrends tool lists the keywords currently trending on Redbubble.
               Increase your sales potential by designing for these popular keywords!
             </p>
-            <div className="flex flex-wrap gap-4">
-              <button 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl ">
+              <button
                 onClick={() => setShowDonateModal(true)}
-                className="bg-[#E21F26] text-white py-2 px-4 rounded hover:bg-red-700 transition duration-300"
+                className="flex items-center justify-center bg-[#E21F26] text-white py-3 px-4 rounded hover:bg-red-700 transition duration-300 w-full"
               >
-                <Heart className="inline-block mr-2" size={18} />
-                Support Us
+                <Heart className="mr-2" size={18} />
+                <span>Support Us</span>
               </button>
-              <a 
-                href="https://g.page/r/your-google-review-link" 
-                target="_blank" 
+              <Link
+                href="https://g.page/r/CZC7Pj19TRloEAI/review"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="bg-yellow-400 text-gray-800 py-2 px-4 rounded hover:bg-yellow-500 transition duration-300"
+                className="flex items-center justify-center bg-yellow-400 text-gray-800 py-3 px-4 rounded hover:bg-yellow-500 transition duration-300 w-full"
               >
-                <Star className="inline-block mr-2" size={18} />
-                Leave a Review
-              </a>
+                <Star className="mr-2" size={18} />
+                <span>Leave a Review</span>
+              </Link>
+              <Link
+                href="/ai-image-generator"
+                className="flex items-center justify-center bg-blue-500 text-white py-3 px-4 rounded hover:bg-blue-600 transition duration-300 w-full sm:col-span-2 ai-button-pulse"
+              >
+                <Image className="mr-2" size={18} />
+                <span>Try AI Image Generator</span>
+              </Link>
             </div>
           </div>
 
@@ -40,32 +49,9 @@ const TrendsHeroSection = () => {
 
         </div>
       </div>
-      
-      {showDonateModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-          <div className="bg-white p-6 rounded-lg max-w-md w-full">
-            <h2 className="text-2xl font-bold mb-4">Support BubbleTrends</h2>
-            <p className="mb-4">Your donation helps us maintain and improve our services. Thank you for your support!</p>
-            <div className="flex justify-around mb-4">
-                <a href='https://paypal.me/bubbletrends/5USD' target="_blank" rel="noopener noreferrer" >
-              <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">$5</button>
-                </a>
-                <a href='https://paypal.me/bubbletrends/10USD' target="_blank" rel="noopener noreferrer" >
-              <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">$10</button>
-                </a>
-                <a href='https://paypal.me/bubbletrends/20USD' target="_blank" rel="noopener noreferrer" >
-              <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">$20</button>
-                </a>
-            </div>
-            <button 
-              onClick={() => setShowDonateModal(false)}
-              className="w-full bg-gray-300 text-gray-800 py-2 px-4 rounded hover:bg-gray-400 transition duration-300"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+
+      {showDonateModal && <DonationModal setShowDonateModal={setShowDonateModal} />}
+
     </div>
   );
 };
