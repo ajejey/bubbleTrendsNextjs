@@ -205,6 +205,15 @@ const BubbleTrendsTable = () => {
     {error && (
       <div className="text-center py-4 text-red-500">{error}</div>
     )}
+    {isLoading && (
+      <div className="text-center py-4 flex items-center justify-center">
+        <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" fill="currentColor" />
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.924 3 7.734v1.265c0 .553.248 1.035.659 1.392l2.569 1.565c.327.262.74.377 1.133.378v1.919c0 .553.691 1.043 1.358 1.052h1.267c-.042-.504.173-.978.521-1.352l1.387-1.709Z" />
+        </svg>
+        Loading more results...
+      </div>
+    )}
     <table className="min-w-full bg-white">
       <thead className="bg-[antiquewhite]">
         <tr>
@@ -231,15 +240,7 @@ const BubbleTrendsTable = () => {
         ))}
       </tbody>
     </table>
-    {isLoading && (
-      <div className="text-center py-4 flex items-center justify-center">
-        <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" fill="currentColor" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.924 3 7.734v1.265c0 .553.248 1.035.659 1.392l2.569 1.565c.327.262.74.377 1.133.378v1.919c0 .553.691 1.043 1.358 1.052h1.267c-.042-.504.173-.978.521-1.352l1.387-1.709Z" />
-        </svg>
-        Loading more results...
-      </div>
-    )}
+    
   </div>
   
   );
