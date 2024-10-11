@@ -41,7 +41,8 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="UA-173651785-1" />
+      {/* <GoogleTagManager gtmId="UA-173651785-1" /> */}
+      <GoogleTagManager gtmId="G-LESFVC18KW" />
       <body
         className={` ${poppins.className} antialiased`}
       >
