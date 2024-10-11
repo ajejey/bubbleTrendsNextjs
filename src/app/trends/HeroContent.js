@@ -18,7 +18,7 @@ const TrendsHeroSection = () => {
               The BubbleTrends tool lists the keywords currently trending on Redbubble.
               Increase your sales potential by designing for these popular keywords!
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl ">
+            <div className="grid grid-cols-2 gap-4 max-w-xl ">
               <button
                 onClick={() => setShowDonateModal(true)}
                 className="flex items-center justify-center bg-[#E21F26] text-white py-3 px-4 rounded hover:bg-red-700 transition duration-300 w-full"
@@ -37,11 +37,14 @@ const TrendsHeroSection = () => {
               </Link>
               <Link
                 href="/ai-image-generator"
-                className="flex items-center justify-center bg-blue-500 text-white py-3 px-4 rounded hover:bg-blue-600 transition duration-300 w-full sm:col-span-2 ai-button-pulse"
+                className="flex items-center justify-center bg-blue-500 text-white py-3 px-4 rounded hover:bg-blue-600 transition duration-300 w-full col-span-2 ai-button-pulse"
               >
                 <Image className="mr-2" size={18} />
                 <span>Try AI Image Generator</span>
               </Link>
+            </div>
+            <div>
+            <p className="text-sm mt-6 text-gray-600">For queries and suggestions, <br/><a className="text-[#E21F26] hover:underline" href="mailto:thebubbletrends@gmail.com">contact : thebubbletrends@gmail.com</a></p>
             </div>
           </div>
 

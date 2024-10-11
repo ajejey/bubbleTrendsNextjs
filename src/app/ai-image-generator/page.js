@@ -13,8 +13,8 @@ const HuggingFaceQuery = () => {
   const [prompt, setPrompt] = useState("");
   const [negativePrompt, setNegativePrompt] = useState("");
   const [modelSelected, setModelSelected] = useState("FLUX.1-schnell");
-  const [guidanceScale, setGuidanceScale] = useState(7.5);
-  const [numInferenceSteps, setNumInferenceSteps] = useState(50);
+  const [guidanceScale, setGuidanceScale] = useState(3.5);
+  const [numInferenceSteps, setNumInferenceSteps] = useState(25);
   const [width, setWidth] = useState(512);
   const [height, setHeight] = useState(512);
   const [seed, setSeed] = useState("");
@@ -347,11 +347,11 @@ const HuggingFaceQuery = () => {
           <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
             <thead className="bg-gray-100">
               <tr>
-                <th className="px-2 py-2 w-16">Delete</th>
+                <th className="px-2 py-2 w-16">Load</th>
                 <th className="px-4 py-2 w-1/2">Prompt</th>
                 <th className="px-4 py-2">Model</th>
                 <th className="px-4 py-2">Timestamp</th>
-                <th className="px-2 py-2 w-16">Load</th>
+                <th className="px-2 py-2 w-16">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -359,10 +359,10 @@ const HuggingFaceQuery = () => {
                 <tr key={index} className="border-t">
                   <td className="px-4 py-2">
                     <button
-                      onClick={() => deleteHistoryItem(item)}
-                      className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded text-sm"
+                      onClick={() => loadHistoryItem(item)}
+                      className=" hover:bg-blue-200 text-blue-500 font-bold py-1 px-2 rounded text-sm"
                     >
-                      <Trash2 size={18} />
+                      <RotateCw size={18} />
                     </button>
                   </td>
                   <td className="px-4 py-2">{item.prompt.substring(0, 150)}...</td>
@@ -370,10 +370,10 @@ const HuggingFaceQuery = () => {
                   <td className="px-4 py-2">{new Date(item.timestamp).toLocaleString()}</td>
                   <td className="px-4 py-2">
                     <button
-                      onClick={() => loadHistoryItem(item)}
-                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-sm"
+                      onClick={() => deleteHistoryItem(item)}
+                      className=" hover:bg-red-200 text-red-500 font-bold py-1 px-2 rounded text-sm"
                     >
-                      <RotateCw size={18} />
+                      <Trash2 size={18} />
                     </button>
                   </td>
                 </tr>
