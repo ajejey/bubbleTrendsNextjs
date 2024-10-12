@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* <GoogleTagManager gtmId="UA-173651785-1" /> */}
-      <GoogleAnalytics gtmId="G-LESFVC18KW" />
+      <GoogleAnalytics gaId="G-LESFVC18KW" />
       <body
         className={` ${poppins.className} antialiased`}
       >
