@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { RotateCw, Trash2 } from "lucide-react";
 import { callHuggingFaceAPI, checkJobStatus, initiateHuggingFaceAPI } from "@/utils/action";
 import CustomLoader from "./customLoader";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 const HuggingFaceQuery = () => {
   const [jobId, setJobId] = useState(null);
@@ -181,6 +182,8 @@ const HuggingFaceQuery = () => {
               timestamp: new Date().toLocaleString(),
               imageBlob: `data:image/png;base64,${result.image}`
             });
+
+            sendGTMEvent({event: 'ai_image_generated', value: history.length + 1});
         } else if (result.status === 'error') {
             setError(result.message);
             setLoading(false);

@@ -1,6 +1,6 @@
 import { Poppins } from 'next/font/google';
 import "./globals.css";
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import { Suspense } from 'react';
 
 
@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* <GoogleTagManager gtmId="UA-173651785-1" /> */}
-      <GoogleTagManager gtmId="G-LESFVC18KW" />
+      <GoogleAnalytics gtmId="G-LESFVC18KW" />
       <body
         className={` ${poppins.className} antialiased`}
       >
