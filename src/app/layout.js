@@ -16,7 +16,7 @@ export const metadata = {
     title: 'FREE Keywords on Redbubble | FREE AI IMAGE GENERATOR',
     description: 'Discover trending keywords on Redbubble with Bubble Trends. Now generate AI images with Bubble Trends.',
     url: 'https://www.thebubbletrends.com/',
-    siteName: 'Bubble Trends',
+    siteName: 'FREE Keywords on Redbubble | FREE AI IMAGE GENERATOR',
     locale: 'en_US',
     type: 'website',
   },
