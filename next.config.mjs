@@ -3,7 +3,7 @@ import createMDX from '@next/mdx'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
+  output: 'standalone',
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -13,14 +13,14 @@ const nextConfig = {
       },
     ],
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/nextblog' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '/nextblog' : '',
   experimental: {
     appDir: true,
+    serverActions: true,
   },
 }
 
 const withMDX = createMDX({
+  // Add markdown plugins here, if needed
   options: {
     remarkPlugins: [],
     rehypePlugins: [],

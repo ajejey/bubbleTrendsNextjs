@@ -66,7 +66,6 @@ function generateStructuredData(post, url) {
 export async function generateMetadata({ params }) {
   const post = getPostBySlug(params.slug);
 
-  console.log("post in generateMetadata", post);
   
   if (!post) {
     return {
