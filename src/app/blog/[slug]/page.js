@@ -129,7 +129,7 @@ export default function BlogPost({ params }) {
                   priority
                 />
               </div>
-              <div className="px-8 py-10">
+              <div className="px-4 py-10">
                 <div className="mb-8">
                   <h1 className="text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
                   <div className="flex items-center text-gray-600">
@@ -172,7 +172,7 @@ export default function BlogPost({ params }) {
                 )}
 
                 {/* Content Section */}
-                <div className="px-8 py-10">
+                <div className="px-4 py-10">
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeRaw]}
