@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Brand Story Blueprint</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            color: #2C3E50;
+            background: #fff;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+            padding: 60px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #E21F26;
+        }
+
+        .header h1 {
+            color: #E21F26;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .header p {
+            color: #6c757d;
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            color: #E21F26;
+            font-size: 32px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 32px;
+            background: #E21F26;
+            margin-right: 16px;
+            border-radius: 3px;
+        }
+
+        .section h3 {
+            color: #2C3E50;
+            font-size: 24px;
+            margin: 30px 0 24px;
+        }
+
+        .input-group {
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #2C3E50;
+        }
+
+        .input-field {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            width: 100%;
+            font-size: 16px;
+            min-height: 56px;
+        }
+
+        .tip {
+            font-style: italic;
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 12px;
+            padding-left: 16px;
+            border-left: 3px solid #e9ecef;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .brand-personality {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .checkbox-group {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #E21F26;
+            border-radius: 6px;
+            margin-right: 12px;
+            position: relative;
+        }
+
+        .checkbox-label {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                width: 100%;
+                padding: 40px;
+            }
+
+            .brand-personality {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-personality {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Brand Story Blueprint</h1>
+            <p>Transform your website into a compelling narrative that resonates with your audience</p>
+        </div>
+
+        <div class="section">
+            <h2>Core Brand Elements</h2>
+            
+            <h3>Your Brand's Heart</h3>
+            
+            <div class="input-group">
+                <label>Mission Statement</label>
+                <div class="input-field">Why do you exist? What drives your business?</div>
+                <div class="tip">Think about the fundamental purpose that drives your business forward</div>
+            </div>
+
+            <div class="input-group">
+                <label>Vision Statement</label>
+                <div class="input-field">What future are you creating for your customers?</div>
+                <div class="tip">Describe the transformation you want to create in the world</div>
+            </div>
+
+            <div class="note">
+                Your mission and vision statements are the foundation of your brand story. They should inspire both your team and your customers.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Visual Identity</h2>
+            
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>Brand Colors</label>
+                    <div class="input-field">Primary color (e.g., #E21F26)</div>
+                    <div class="tip">Choose colors that reflect your brand personality</div>
+                </div>
+                <div class="input-group">
+                    <label>Typography</label>
+                    <div class="input-field">Main font family</div>
+                    <div class="tip">Select fonts that enhance readability and brand voice</div>
+                </div>
+            </div>
+
+            <h3>Brand Personality</h3>
+            <div class="checkbox-group">
+                <div class="brand-personality">
+                    <div class="checkbox-item">
+                        <div class="checkbox"></div>
+                        <span class="checkbox-label">Professional</span>
+                    </div>
+                    <div class="checkbox-item">
+                        <div class="checkbox"></div>
+                        <span class="checkbox-label">Friendly</span>
+                    </div>
+                    <div class="checkbox-item">
+                        <div class="checkbox"></div>
+                        <span class="checkbox-label">Innovative</span>
+                    </div>
+                    <div class="checkbox-item">
+                        <div class="checkbox"></div>
+                        <span class="checkbox-label">Playful</span>
+                    </div>
+                    <div class="checkbox-item">
+                        <div class="checkbox"></div>
+                        <span class="checkbox-label">Luxurious</span>
+                    </div>
+                    <div class="checkbox-item">
+                        <div class="checkbox"></div>
+                        <span class="checkbox-label">Minimalist</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Created with ♥ by BubbleTrends<br>
+            Last Updated: January 4, 2025
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.checkbox-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const checkbox = item.querySelector('.checkbox');
+                checkbox.classList.toggle('checked');
+            });
+        });
+    </script>
+</body>
+</html>

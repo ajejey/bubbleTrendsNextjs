@@ -12,6 +12,9 @@ export const metadata = {
   title: 'FREE Keywords on Redbubble | FREE AI IMAGE GENERATOR',
   description: 'Discover trending keywords on Redbubble with Bubble Trends. Now generate AI images with Bubble Trends.',
   canonical: 'https://www.thebubbletrends.com/',
+  other: {
+    'p:domain_verify': '558f976b5c3862b8ad3d2ef815d51108'
+  },
   openGraph: {
     title: 'FREE Keywords on Redbubble | FREE AI IMAGE GENERATOR',
     description: 'Discover trending keywords on Redbubble with Bubble Trends. Now generate AI images with Bubble Trends.',
