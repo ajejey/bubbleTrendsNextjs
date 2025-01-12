@@ -4,6 +4,14 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import Image from 'next/image';
+import CommentForm from '@/components/CommentForm';
+import LikeButton from '@/components/LikeButton';
+import { connectToMongoDB } from '@/utils/db';
+import Comment from '@/models/Comment';
+import { getCommentTokenFromServerCookies } from '@/utils/commentToken'
+// import CommentForm from '@/components/CommentForm';
+// import Comment from '@/models/Comment';
+// import connectDB from '@/utils/db';
 
 // Calculate reading time
 function getReadingTime(content) {
@@ -103,15 +111,36 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function BlogPost({ params }) {
+export default async function BlogPost({ params }) {
   try {
+    await connectToMongoDB();
+
+    console.log("Fetching comments for post:", params.slug);
+
     const post = getPostBySlug(params.slug);
+
     const readingTime = getReadingTime(post.content);
     const structuredData = generateStructuredData(post, `https://thebubbletrends.com/blog/${params.slug}`);
     const tableOfContents = generateTOC(post.content);
+
+    // Fetch comments for this post
+    console.log("Fetching comments for post:", params.slug);
+    const comments = await Comment.find({ 
+      postSlug: params.slug, 
+      // Only show approved comments in production
+      // ...(process.env.NODE_ENV === 'production' ? { status: 'approved' } : {})
+    }).sort({ createdAt: -1 });
     
+    console.log("Comments found:", comments.length);
+    console.log("Comments details:", comments.map(c => ({
+      id: c._id,
+      name: c.author.name,
+      status: c.status,
+      content: c.content
+    })));
+
     return (
-      <>
+      <div>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -142,6 +171,7 @@ export default function BlogPost({ params }) {
                     </time>
                     <span className="mx-2">•</span>
                     <span>{readingTime} min read</span>
+                    <LikeButton postSlug={params.slug} />
                   </div>
                 </div>
 
@@ -223,7 +253,47 @@ export default function BlogPost({ params }) {
             </article>
           </div>
         </div>
-      </>
+
+        <section>
+        <div className="container mx-auto px-4 py-8 max-w-4xl">
+          <h2 className="text-3xl font-bold mb-4">Comments</h2>
+          
+          {comments.length === 0 ? (
+            <p className="text-gray-500">No comments yet. Be the first to comment!</p>
+          ) : (
+            comments.map(comment => (
+              <div 
+                key={comment._id.toString()} 
+                className={`mb-4 p-4 rounded-lg ${
+                  comment.status === 'pending' 
+                    ? 'bg-yellow-50 border-yellow-200 border' 
+                    : 'bg-white border-gray-200 border'
+                }`}
+              >
+                <div className="flex items-center mb-2">
+                  <p className="font-semibold mr-2">{comment.author.name}</p>
+                  {comment.status === 'pending' && (
+                    <span className="text-xs text-yellow-600 bg-yellow-100 px-2 py-1 rounded">
+                      Pending Approval
+                    </span>
+                  )}
+                </div>
+                <p>{comment.content}</p>
+                <small className="text-gray-500">
+                  {new Date(comment.createdAt).toLocaleString()}
+                </small>
+              </div>
+            ))
+          )}
+
+          <CommentForm />
+        </div>
+        </section>
+
+        <div className="mt-4">
+          <LikeButton postSlug={params.slug} />
+        </div>
+      </div>
     );
   } catch (error) {
     notFound();
