@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.thebubbletrends.com/sitemap.xml
+
+# Crawl-delay parameter: number of seconds to wait between successive requests
+Crawl-delay: 10
+
+# Directories to exclude
+Disallow: /private/
+Disallow: /admin/
+
+# Additional SEO optimization
+Host: https://www.thebubbletrends.com
