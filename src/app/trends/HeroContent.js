@@ -3,44 +3,10 @@ import { useState } from 'react';
 import { Star, Heart, ExternalLink, Image, BookOpen } from 'lucide-react';
 import DonationModal from './DonationModal';
 import Link from 'next/link';
+import BlogPromoSection from './BlogPromoSection';
 
-const BlogPromoSection = () => {
-  return (
-    <div className="bg-white p-8 rounded-2xl shadow-lg">
-      <div className="flex items-center justify-center mb-6">
-        <BookOpen size={32} className="text-[#E21F26]" />
-      </div>
-      <h2 className="text-2xl font-bold text-center mb-4">Check Out Our Blog!</h2>
-      <p className="text-gray-600 mb-6 text-center">
-        Discover actionable strategies and practical tips to build sustainable income streams. 
-        From digital products to freelancing success – we&apos;ve got you covered!
-      </p>
-      <div className="space-y-4">
-        <div className="flex items-center text-gray-700 mb-2">
-          <span className="mr-2">✓</span>
-          <span>Step-by-step guides</span>
-        </div>
-        <div className="flex items-center text-gray-700 mb-2">
-          <span className="mr-2">✓</span>
-          <span>Real success stories</span>
-        </div>
-        <div className="flex items-center text-gray-700 mb-2">
-          <span className="mr-2">✓</span>
-          <span>Practical tips & tricks</span>
-        </div>
-      </div>
-      <Link
-        href="/blog"
-        className="mt-6 flex items-center justify-center bg-[#E21F26] text-white py-3 px-6 rounded-lg hover:bg-red-700 transition duration-300 w-full"
-      >
-        <BookOpen className="mr-2" size={18} />
-        <span>Read Our Blog</span>
-      </Link>
-    </div>
-  );
-};
 
-const TrendsHeroSection = () => {
+const TrendsHeroSection = ({ latestPosts }) => {
   const [showDonateModal, setShowDonateModal] = useState(false);
 
   return (
@@ -83,7 +49,7 @@ const TrendsHeroSection = () => {
             </div>
           </div>
 
-          <BlogPromoSection />
+          <BlogPromoSection latestPosts={latestPosts} />
         </div>
       </div>
 
