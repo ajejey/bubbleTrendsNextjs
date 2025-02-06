@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
       <Suspense fallback={<div>Loading...</div>}>
         {children}
       </Suspense>
-      <CookieConsent />
+      {/* <CookieConsent /> */}
       </body>
     </html>
   );
