@@ -23,8 +23,8 @@ export default function Breadcrumbs() {
       .join(' ');
       
     // If it's a blog post (has a slug), get the actual title
-    const isBlogPost = segment.match(/^[a-z0-9-]+$/);
-    const displayLabel = isBlogPost && isLast ? 'Current Post' : label;
+    const isBlogPost = pathname.startsWith('/posts/');
+    const displayLabel = isBlogPost && isLast ? label : label;
     
     return {
       href,

@@ -2,7 +2,7 @@ import { Poppins } from 'next/font/google';
 import "./globals.css";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import { Suspense } from 'react';
-
+import CookieConsent from '@/components/CookieConsent'
 
 const poppins = Poppins({ 
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -31,8 +31,17 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
-  // viewport: 'width=device-width, initial-scale=1, theme-color=#E21F26',
+  verification: {
+    google: '558f976b5c3862b8ad3d2ef815d51108',
+  },
 }
 
 export const viewport = {
@@ -44,6 +53,15 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://www.thebubbletrends.com" />
+        <script 
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_CLIENT_ID" 
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       {/* <GoogleTagManager gtmId="UA-173651785-1" /> */}
       <GoogleAnalytics gaId="G-LESFVC18KW" />
       <body
@@ -52,6 +70,7 @@ export default function RootLayout({ children }) {
       <Suspense fallback={<div>Loading...</div>}>
         {children}
       </Suspense>
+      <CookieConsent />
       </body>
     </html>
   );
