@@ -293,6 +293,17 @@ export default async function BlogPost({ params }) {
         <div className="mt-4">
           <LikeButton postSlug={params.slug} />
         </div>
+        <footer className="w-full text-center py-6 mt-auto  bg-[#E21F26]">
+          <div className="flex justify-center space-x-6 mb-4">
+            <Link href="/about" className="hover:underline transition-colors">About</Link>
+            <Link href="/contact" className="hover:underline transition-colors">Contact</Link>
+            <Link href="/privacy" className="hover:underline transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="hover:underline transition-colors">Terms of Service</Link>
+          </div>
+          <p>
+            Bubble Trends © {new Date().getFullYear()}
+          </p>
+        </footer>
       </div>
     );
   } catch (error) {

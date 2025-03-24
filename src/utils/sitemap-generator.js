@@ -6,8 +6,8 @@ const generateSitemap = () => {
   const pages = [
     '/',
     '/ai-image-generator',
-    '/privacy-policy',
-    '/terms-of-service',
+    '/privacy',
+    '/terms-and-conditions',
     // Add more pages here
   ];
 
