@@ -54,12 +54,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <meta name="google-adsense-account" content="ca-pub-3613850686549619" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://www.thebubbletrends.com" />
-        <meta name="Trafficstars" content="65568364397837486636436544797246" />
         <script 
           async 
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_CLIENT_ID" 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3613850686549619" 
           crossOrigin="anonymous"
         ></script>
       </head>

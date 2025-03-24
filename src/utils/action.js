@@ -83,7 +83,8 @@ export async function callHuggingFaceAPI(modelSelected, data, jobId) {
         );
 
         if (!response.ok) {
-            throw new Error("Failed to fetch image.");
+            console.log("response of huggingface : ", response);
+            throw new Error("Failed to fetch image.", response);
         }
 
         const arrayBuffer = await response.arrayBuffer();
