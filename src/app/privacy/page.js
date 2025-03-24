@@ -52,10 +52,10 @@ export default function PrivacyPage() {
         <h2 className="text-2xl font-semibold mb-3 text-red-600">Log Files</h2>
         <p className="mb-6 text-gray-700">
           bubbletrends follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do
-          this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses,
+          this and a part of hosting services&apos; analytics. The information collected by log files include internet protocol (IP) addresses,
           browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not
           linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site,
-          tracking users' movement on the website, and gathering demographic information.
+          tracking users&apos; movement on the website, and gathering demographic information.
         </p>
 
         <h2 className="text-2xl font-semibold mb-3 text-red-600">Advertising Partners Privacy Policies</h2>
@@ -63,16 +63,16 @@ export default function PrivacyPage() {
           bubbletrends uses Google AdSense, an advertising service provided by Google Inc. Google AdSense uses cookies and similar technologies to serve ads based on your visits to this and other websites. You may consult this list to find the Privacy Policy for each of the advertising partners of bubbletrends.
         </p>
         <p className="mb-3 text-gray-700">
-          Google AdSense and other third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on bubbletrends, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
+          Google AdSense and other third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on bubbletrends, which are sent directly to users&apos; browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
         </p>
         <p className="mb-6 text-gray-700">
-          Note that bubbletrends has no access to or control over these cookies that are used by third-party advertisers. You can opt out of personalized advertising by visiting Google's Ads Settings page.
+          Note that bubbletrends has no access to or control over these cookies that are used by third-party advertisers. You can opt out of personalized advertising by visiting Google&apos;s Ads Settings page.
         </p>
 
         <h2 className="text-2xl font-semibold mb-3 text-red-600">CCPA Privacy Rights</h2>
         <p className="mb-2 text-gray-700">Under the CCPA, among other rights, California consumers have the right to:</p>
         <p className="mb-2 text-gray-700">
-          Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a
+          Request that a business that collects a consumer&apos;s personal data disclose the categories and specific pieces of personal data that a
           business has collected about consumers.
         </p>
         <p className="mb-2 text-gray-700">
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
           If you would like to exercise any of these rights, please contact us.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-3 text-red-600">Children's Information</h2>
+        <h2 className="text-2xl font-semibold mb-3 text-red-600">Children&apos;s Information</h2>
         <p className="mb-3 text-gray-700">
           Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe,
           participate in, and/or monitor and guide their online activity.

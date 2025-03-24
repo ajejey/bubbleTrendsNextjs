@@ -7,7 +7,7 @@ export default function Contact() {
       
       <section className="mb-12 bg-white shadow-lg rounded-lg p-8">
         <p className="mb-6 text-gray-700 leading-relaxed text-center">
-          Have questions about our trending keywords, AI image generation, or need help with your print-on-demand business? We're here to help!
+          Have questions about our trending keywords, AI image generation, or need help with your print-on-demand business? We&apos;re here to help!
         </p>
         
         <div className="flex flex-col mb-8 p-6 bg-gray-50 rounded-lg">

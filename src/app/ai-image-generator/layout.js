@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../AppHeader'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'AI Image Generator | BubbleTrends',

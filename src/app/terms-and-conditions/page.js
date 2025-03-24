@@ -13,23 +13,23 @@ export default function TermsAndConditions() {
           <p className="mb-4 text-gray-700">Welcome to Bubble Trends!</p>
 
           <p className="mb-4 text-gray-700">
-            These terms and conditions outline the rules and regulations for the use of Bubble Trends's Website, located at
+            These terms and conditions outline the rules and regulations for the use of Bubble Trends&apos; Website, located at
             https://www.thebubbletrends.com/.
           </p>
 
           <p className="mb-4 text-gray-700">
-            By accessing this website we assume you accept these terms and conditions. Do not continue to use Bubble Trends
+            By accessing this website we assume you accept these terms and conditions. Do not continue to use Bubble Trends&apos;
             if you do not agree to take all of the terms and conditions stated on this page.
           </p>
 
           <p className="mb-6 text-gray-700">
             The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and
-            all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the
-            Company's terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company.
-            "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance
+            all Agreements: &quot;Client&quot;, &quot;You&quot; and &quot;Your&quot; refers to you, the person log on this website and compliant to the
+            Company&apos;s terms and conditions. &quot;The Company&quot;, &quot;Ourselves&quot;, &quot;We&quot;, &quot;Our&quot; and &quot;Us&quot;, refers to our Company.
+            &quot;Party&quot;, &quot;Parties&quot;, or &quot;Us&quot;, refers to both the Client and ourselves. All terms refer to the offer, acceptance
             and consideration of payment necessary to undertake the process of our assistance to the Client in the most
-            appropriate manner for the express purpose of meeting the Client's needs in respect of provision of the
-            Company's stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the
+            appropriate manner for the express purpose of meeting the Client&apos;s needs in respect of provision of the
+            Company&apos;s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the
             above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as
             interchangeable and therefore as referring to same.
           </p>
@@ -37,10 +37,10 @@ export default function TermsAndConditions() {
           <h2 className="text-2xl font-semibold mb-3 text-red-600">Cookies</h2>
           <p className="mb-4 text-gray-700">
             We employ the use of cookies. By accessing Bubble Trends, you agreed to use cookies in agreement with the
-            Bubble Trends's Privacy Policy.
+            Bubble Trends&apos; Privacy Policy.
           </p>
           <p className="mb-6 text-gray-700">
-            Most interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by
+            Most interactive websites use cookies to let us retrieve the user&apos;s details for each visit. Cookies are used by
             our website to enable the functionality of certain areas to make it easier for people visiting our website. Some
             of our affiliate/advertising partners may also use cookies.
           </p>

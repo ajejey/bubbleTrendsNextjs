@@ -8,10 +8,10 @@ export default function About() {
   <section className="mb-12 bg-white shadow-lg rounded-lg p-8">
     <h2 className="text-2xl font-semibold mb-6 text-red-600">Our Story</h2>
     <p className="mb-4 text-gray-700 leading-relaxed">
-      Founded in 2020, Bubble Trends is your go-to source for trending keywords in the print-on-demand industry. We've evolved from a simple keyword research tool to a comprehensive platform serving designers worldwide.
+      Founded in 2020, Bubble Trends is your go-to source for trending keywords in the print-on-demand industry. We&apos;ve evolved from a simple keyword research tool to a comprehensive platform serving designers worldwide.
     </p>
     <p className="mb-4 text-gray-700 leading-relaxed">
-      Our mission is to empower creators by providing daily updates on the hottest keywords trending on Redbubble. We're passionate about helping you maximize your sales and turn your creativity into success.
+      Our mission is to empower creators by providing daily updates on the hottest keywords trending on Redbubble. We&apos;re passionate about helping you maximize your sales and turn your creativity into success.
     </p>
     <p className="mb-4 text-gray-700 leading-relaxed">
       We hope Bubble Trends becomes an invaluable asset in your design journey. Your growth and success are what drive us to continually improve and innovate.

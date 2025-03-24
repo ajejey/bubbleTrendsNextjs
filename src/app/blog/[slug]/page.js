@@ -9,6 +9,7 @@ import LikeButton from '@/components/LikeButton';
 import { connectToMongoDB } from '@/utils/db';
 import Comment from '@/models/Comment';
 import { getCommentTokenFromServerCookies } from '@/utils/commentToken'
+import Link from 'next/link';
 // import CommentForm from '@/components/CommentForm';
 // import Comment from '@/models/Comment';
 // import connectDB from '@/utils/db';

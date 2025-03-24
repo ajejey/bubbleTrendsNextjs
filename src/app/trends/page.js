@@ -4,6 +4,7 @@ import TrendsHeroSection from './HeroContent'
 import BubbleTrendsTable from './TrendsTable'
 import TrendsFilter from './TrendsFilter'
 import { getPosts } from '@/utils/getPosts'
+import Link from 'next/link'
 
 const Trends = () => {
     const latestPosts = getPosts().slice(0, 3);
