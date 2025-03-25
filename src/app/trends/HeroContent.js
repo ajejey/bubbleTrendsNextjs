@@ -21,7 +21,7 @@ const TrendsHeroSection = ({ latestPosts }) => {
       <div className="flex md:hidden justify-center pb-4">
         <AdComponent adSlot={AD_SLOTS.SQUARE_RESPONSIVE_AD} adFormat="rectangle" />
       </div>
-      <div className="container mx-auto px-4">
+      <div className="max-w-5xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <h1 className="text-4xl font-bold mb-4 text-[#E21F26]">Today&apos;s Trending Keywords</h1>

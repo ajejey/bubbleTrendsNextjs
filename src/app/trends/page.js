@@ -22,21 +22,25 @@ const Trends = () => {
             {/* Main content with side ads */}
             <div className="relative max-w-[1600px] mx-auto">
                 {/* Left Sticky Ad - Desktop Only */}
-                <div className="hidden xl:block absolute left-0 top-0 h-full">
-                    <div className="sticky top-16 left-0 pt-10">
-                        <AdComponent adSlot={AD_SLOTS.SIDEBAR_AD} adFormat="vertical" />
+                <div className="hidden xl:block fixed left-1/2 ml-[-750px] top-20">
+                    <div className="sticky top-16 pt-10">
+                        <div> 
+                            <AdComponent adSlot={AD_SLOTS.SIDEBAR_AD} adFormat="vertical" />
+                        </div>
                     </div>
                 </div>
 
                 {/* Right Sticky Ad - Desktop Only */}
-                <div className="hidden xl:block absolute right-0 top-0 h-full">
-                    <div className="sticky top-16 right-0 pt-10">
-                        <AdComponent adSlot={AD_SLOTS.SIDEBAR_AD} adFormat="vertical" />
+                <div className="hidden xl:block fixed right-1/2 mr-[-750px] top-20">
+                    <div className="sticky top-16 pt-10">
+                        <div> 
+                            <AdComponent adSlot={AD_SLOTS.SIDEBAR_AD} adFormat="vertical" />
+                        </div>
                     </div>
                 </div>
 
                 {/* Main Content */}
-                <div className="max-w-5xl mx-auto px-8 py-8">
+                <div className="max-w-5xl mx-auto px-2 py-8">
                     <div className="hidden md:flex w-full justify-center pb-4">
                         <AdComponent adSlot={AD_SLOTS.HEADER_AD} adFormat="horizontal" />
                     </div>
