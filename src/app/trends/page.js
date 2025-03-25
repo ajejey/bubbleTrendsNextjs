@@ -24,14 +24,14 @@ const Trends = () => {
                 {/* Left Sticky Ad - Desktop Only */}
                 <div className="hidden xl:block absolute left-0 top-0 h-full">
                     <div className="sticky top-16 left-0 pt-10">
-                        <AdComponent adSlot={AD_SLOTS.MULTIPLEX_VERTICAL_AD} adFormat="vertical" />
+                        <AdComponent adSlot={AD_SLOTS.SIDEBAR_AD} adFormat="vertical" />
                     </div>
                 </div>
 
                 {/* Right Sticky Ad - Desktop Only */}
                 <div className="hidden xl:block absolute right-0 top-0 h-full">
                     <div className="sticky top-16 right-0 pt-10">
-                        <AdComponent adSlot={AD_SLOTS.MULTIPLEX_VERTICAL_AD} adFormat="vertical" />
+                        <AdComponent adSlot={AD_SLOTS.SIDEBAR_AD} adFormat="vertical" />
                     </div>
                 </div>
 
