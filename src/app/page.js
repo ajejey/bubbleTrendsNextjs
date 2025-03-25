@@ -12,8 +12,11 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[#E21F26] text-[antiquewhite]">
     {/* Header Ad */}
-      <div className="w-full flex justify-center px-4">
-        <AdComponent adSlot={AD_SLOTS.HEADER_AD} adFormat="fluid" />
+      <div className="hidden md:flex w-full justify-center px-4">
+        <AdComponent adSlot={AD_SLOTS.HEADER_AD} adFormat="horizontal" />
+      </div>
+      <div className="flex md:hidden justify-center px-4">
+        <AdComponent adSlot={AD_SLOTS.SQUARE_RESPONSIVE_AD} adFormat="rectangle" />
       </div>
 
     <div className="flex-grow container mx-auto px-4">
@@ -46,9 +49,9 @@ export default function Home() {
             </Link>
 
             {/* In-Article Ad */}
-            <div className="mt-16 flex justify-center lg:hidden">
-              <AdComponent adSlot={AD_SLOTS.SQUARE_RESPONSIVE_AD} adFormat="fluid" />
-            </div>
+            {/* <div className="mt-16 flex justify-center lg:hidden">
+              <AdComponent adSlot={AD_SLOTS.SQUARE_RESPONSIVE_AD} adFormat="rectangle" />
+            </div> */}
           </div>
         </main>
 
@@ -64,8 +67,11 @@ export default function Home() {
     {/* Footer */}
     <footer className="w-full mt-auto">
       {/* Footer Ad */}
-      <div className="w-full flex justify-center px-4">
-        <AdComponent adSlot={AD_SLOTS.HEADER_AD} adFormat="fluid" />
+      <div className="hidden md:flex w-full justify-center px-4">
+        <AdComponent adSlot={AD_SLOTS.HEADER_AD} adFormat="horizontal" />
+      </div>
+      <div className="flex md:hidden justify-center px-4">
+        <AdComponent adSlot={AD_SLOTS.SQUARE_RESPONSIVE_AD} adFormat="rectangle" />
       </div>
       
       <div className="py-6 bg-[#E21F26]">
