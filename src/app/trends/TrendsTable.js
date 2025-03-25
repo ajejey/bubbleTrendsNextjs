@@ -3,6 +3,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getMoreTrendsData, saveData } from '@/utils/action';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation'
+import { AD_SLOTS, AD_CONFIG } from '@/components/ads/adConstants';
+import { AdPlaceholder } from '@/components/ads/AdPlaceholder';
+import { AdUnit } from '@/components/ads/AdUnit';
+
+const AdComponent = process.env.NODE_ENV === "development" ? AdPlaceholder : AdUnit;
 
 const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'y', 'z'];
 // const alphabets = ['a', 'b'];
@@ -159,7 +164,6 @@ const BubbleTrendsTable = () => {
     setIsLoading(false);
   };
 
-
   const fetchResultCount = async (keyword) => {
     try {
       const response = await fetch('https://www.redbubble.com/boom/graphql', {
@@ -200,49 +204,82 @@ const BubbleTrendsTable = () => {
     }
   };
 
-  return (
-    <div className="overflow-x-auto">
-    {error && (
-      <div className="text-center py-4 text-red-500">{error}</div>
-    )}
-    {isLoading && (
-      <div className="text-center py-4 flex items-center justify-center">
-        <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" fill="currentColor" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.924 3 7.734v1.265c0 .553.248 1.035.659 1.392l2.569 1.565c.327.262.74.377 1.133.378v1.919c0 .553.691 1.043 1.358 1.052h1.267c-.042-.504.173-.978.521-1.352l1.387-1.709Z" />
-        </svg>
-        Loading more results...
-      </div>
-    )}
-    <table className="min-w-full bg-white">
-      <thead className="bg-[antiquewhite]">
-        <tr>
-          <th className="px-4 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">No.</th>
-          <th className="px-4 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">Keyword</th>
-          <th className="px-4 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">Result Count</th>
-        </tr>
-      </thead>
-      <tbody className="bg-white divide-y divide-gray-200">
-        {keywords.map((item, index) => (
-          <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-100'}>
-            <td className="px-4 py-2">
-              {index + 1}
-            </td>
-            <td className="px-4 py-2">
-              <Link className="text-blue-600 hover:underline" href={`https://www.redbubble.com/shop?query=${encodeURIComponent(item.keyword || item.trend)}`} target="_blank" rel="noopener noreferrer">
+  const TableSection = ({ items, startIndex }) => (
+    <tbody className="bg-white divide-y divide-gray-200">
+      {items.map((item, index) => (
+        <tr key={startIndex + index} className={(startIndex + index) % 2 === 0 ? '' : 'bg-gray-100'}>
+          <td className="px-4 py-2">
+            {startIndex + index + 1}
+          </td>
+          <td className="px-4 py-2">
+            <Link 
+              className="text-blue-600 hover:underline" 
+              href={`https://www.redbubble.com/shop?query=${encodeURIComponent(item.keyword || item.trend)}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               {item.keyword || item.trend}
-              </Link>
-            </td>
-            <td className="px-4 py-2">
-              {item.resultCount || item.results}
-            </td>
+            </Link>
+          </td>
+          <td className="px-4 py-2">
+            {item.resultCount || item.results}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  );
+
+  const AdSection = () => (
+    <tbody>
+      <tr>
+        <td colSpan="3" className="py-4">
+          <div className="hidden md:flex w-full justify-center">
+            <AdComponent adSlot={AD_SLOTS.HEADER_AD} adFormat="horizontal" />
+          </div>
+          <div className="flex md:hidden justify-center">
+            <AdComponent adSlot={AD_SLOTS.SQUARE_RESPONSIVE_AD} adFormat="rectangle" />
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  );
+
+  return (
+    <div className="overflow-x-auto shadow-md rounded-lg">
+      {error && (
+        <div className="text-center py-4 text-red-500">{error}</div>
+      )}
+      {isLoading && (
+        <div className="text-center py-4 flex items-center justify-center">
+          <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" fill="currentColor" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.924 3 7.734v1.265c0 .553.248 1.035.659 1.392l2.569 1.565c.327.262.74.377 1.133.378v1.919c0 .553.691 1.043 1.358 1.052h1.267c-.042-.504.173-.978.521-1.352l1.387-1.709Z" />
+          </svg>
+          Loading more results...
+        </div>
+      )}
+      <table className="min-w-full bg-white">
+        <thead className="bg-[antiquewhite]">
+          <tr>
+            <th className="px-4 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">No.</th>
+            <th className="px-4 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">Keyword</th>
+            <th className="px-4 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">Result Count</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-    
-  </div>
-  
+        </thead>
+        {keywords.map((_, index) => {
+          if (index % AD_CONFIG.TABLE_ROW_CHUNK_SIZE === 0) {
+            const chunk = keywords.slice(index, index + AD_CONFIG.TABLE_ROW_CHUNK_SIZE);
+            return (
+              <React.Fragment key={index}>
+                <TableSection items={chunk} startIndex={index} />
+                {index + AD_CONFIG.TABLE_ROW_CHUNK_SIZE < keywords.length && <AdSection />}
+              </React.Fragment>
+            );
+          }
+          return null;
+        })}
+      </table>
+    </div>
   );
 };
 

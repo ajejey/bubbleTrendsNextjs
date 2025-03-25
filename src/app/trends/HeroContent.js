@@ -4,13 +4,23 @@ import { Star, Heart, ExternalLink, Image, BookOpen } from 'lucide-react';
 import DonationModal from './DonationModal';
 import Link from 'next/link';
 import BlogPromoSection from './BlogPromoSection';
+import { AD_SLOTS } from '@/components/ads/adConstants';
+import { AdPlaceholder } from '@/components/ads/AdPlaceholder';
+import { AdUnit } from '@/components/ads/AdUnit';
 
+const AdComponent = process.env.NODE_ENV === "development" ? AdPlaceholder : AdUnit;
 
 const TrendsHeroSection = ({ latestPosts }) => {
   const [showDonateModal, setShowDonateModal] = useState(false);
 
   return (
-    <div className="bg-gray-100 py-12">
+    <div className="bg-gray-100 pb-12 pt-8">
+      <div className="hidden md:flex w-full justify-center pb-4">
+        <AdComponent adSlot={AD_SLOTS.HEADER_AD} adFormat="horizontal" />
+      </div>
+      <div className="flex md:hidden justify-center pb-4">
+        <AdComponent adSlot={AD_SLOTS.SQUARE_RESPONSIVE_AD} adFormat="rectangle" />
+      </div>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>

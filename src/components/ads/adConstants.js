@@ -16,3 +16,9 @@ export const AD_SLOTS = {
   MULTIPLEX_VERTICAL_AD: "2416789086",
   SQUARE_RESPONSIVE_AD: "4660605203"
 };
+
+// Configuration for ad placement
+export const AD_CONFIG = {
+  TABLE_ROW_CHUNK_SIZE: 25,  // Number of rows between ads in tables
+  ARTICLE_PARAGRAPH_CHUNK_SIZE: 3, // Number of paragraphs between ads in articles
+};
