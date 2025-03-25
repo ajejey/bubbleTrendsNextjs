@@ -18,7 +18,7 @@ export default function Home() {
 
     <div className="flex-grow container mx-auto px-4">
       <div className="flex flex-col lg:flex-row gap-8 py-8">
-      <aside className="hidden lg:flex lg:w-1/4 justify-center lg:justify-end">
+      <aside className="hidden lg:flex lg:w-1/4 justify-center">
           <div className="sticky top-4">
             <AdComponent adSlot={AD_SLOTS.SIDEBAR_AD} adFormat="vertical" />
           </div>
@@ -46,14 +46,14 @@ export default function Home() {
             </Link>
 
             {/* In-Article Ad */}
-            <div className="mt-16 flex justify-center">
-              <AdComponent adSlot={AD_SLOTS.IN_ARTICLE_AD} adFormat="rectangle" />
+            <div className="mt-16 flex justify-center lg:hidden">
+              <AdComponent adSlot={AD_SLOTS.SQUARE_RESPONSIVE_AD} adFormat="rectangle" />
             </div>
           </div>
         </main>
 
         {/* Sidebar */}
-        <aside className="hidden lg:flex lg:w-1/4 justify-center lg:justify-end">
+        <aside className="hidden lg:flex lg:w-1/4 justify-center">
           <div className="sticky top-4">
             <AdComponent adSlot={AD_SLOTS.SIDEBAR_AD} adFormat="vertical" />
           </div>
