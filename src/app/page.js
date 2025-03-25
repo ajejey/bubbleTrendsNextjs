@@ -12,11 +12,9 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[#E21F26] text-[antiquewhite]">
     {/* Header Ad */}
-    <div className="w-full flex justify-center bg-[#242424]/80 py-1">
-      <div className="max-w-7xl w-full px-4">
+      <div className="w-full flex justify-center px-4">
         <AdComponent adSlot={AD_SLOTS.HEADER_AD} adFormat="horizontal" />
       </div>
-    </div>
 
     <div className="flex-grow container mx-auto px-4">
       <div className="flex flex-col lg:flex-row gap-8 py-8">
@@ -66,10 +64,8 @@ export default function Home() {
     {/* Footer */}
     <footer className="w-full mt-auto">
       {/* Footer Ad */}
-      <div className="w-full bg-[#242424]/80 py-1">
-        <div className="max-w-7xl mx-auto px-4">
-          <AdComponent adSlot={AD_SLOTS.FOOTER_AD} adFormat="horizontal" />
-        </div>
+      <div className="w-full flex justify-center px-4">
+        <AdComponent adSlot={AD_SLOTS.HEADER_AD} adFormat="horizontal" />
       </div>
       
       <div className="py-6 bg-[#E21F26]">
