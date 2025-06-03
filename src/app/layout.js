@@ -56,6 +56,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="google-adsense-account" content="ca-pub-3613850686549619" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name='impact-site-verification' value='406661819' />
         <link rel="canonical" href="https://www.thebubbletrends.com" />
         <script 
           async 
