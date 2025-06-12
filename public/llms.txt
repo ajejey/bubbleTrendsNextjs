@@ -1,0 +1,14 @@
+# Bubble Trends
+> FREE Tool that gives you the latest Redbubble popular trends, updated EVERYDAY! Get the most popular and trending keywords on Redbubble that will help you get more sales! Also, generate images with AI using our AI Image Generator.
+
+## Core Documentation
+- Homepage (`/`): Main entry point of Bubble Trends.
+- About (`/about`): Learn more about Bubble Trends, its mission, and story.
+- Trends (`/trends`): Discover the latest Redbubble popular trends and keywords.
+- Blog (`/blog`): Articles and tips related to Redbubble, print-on-demand, and online business.
+- AI Image Generator (`/ai-image-generator`): Create AI-generated images for your designs.
+
+## Optional
+- Contact (`/contact`): Get in touch with the Bubble Trends team.
+- Privacy Policy (`/privacy`): Read the website's privacy policy.
+- Terms and Conditions (`/terms-and-conditions`): Read the website's terms and conditions.
